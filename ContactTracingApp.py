@@ -1,4 +1,6 @@
 import cv2
+import numpy as np
+from pyzbar import pyzbar
 import webbrowser 
 
 cap = cv2.VideoCapture(0)
@@ -9,23 +11,18 @@ detector = cv2.QRCodeDetector()
 
 while True:
     _, img = cap.read()
+
     # detect and decode
-    data, bbox, _ = detector.detectAndDecode(img)
-    # check if there is a QRCode in the image
-    if data:
-        Info = data
-        break
+    decodedObjects = pyzbar.decode(img)
+    for lines in decodedObjects:
+        open('decodedobjects', decodedObjects.txt)
+    
     cv2.imshow("QRCODEscanner", img)
-    if cv2.waitKey(1) == ord("q"):
+    key = cv2.waitKey(1)
+    if key == 30:
         break
 
 
-ContactTracingData = webbrowser.open(str(Info))
-cap.release()
-cv2.destroyAllWindows()
 
-lines = ['ContactTracingData.txt']
-with open('ContactTracingData.txt', 'w') as f:
-    for line in lines:
-        f.write(line)
-        f.write('\n')
+
+
