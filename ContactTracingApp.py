@@ -13,6 +13,7 @@ while True:
     _, img = cap.read()
 
     # detect and decode
+    
     decodedObjects = pyzbar.decode(img)
     for lines in decodedObjects:
         open('decodedobjects', decodedObjects.txt)
