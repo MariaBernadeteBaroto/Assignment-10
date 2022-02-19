@@ -1,22 +1,28 @@
 import cv2
 import numpy as np
-from pyzbar import pyzbar
+import pyzbar.pyzbar as pyzbar
 import webbrowser 
+import datetime
 
 cap = cv2.VideoCapture(0)
 
-# initialize the cv2 QRcode detector
+now = datetime.datetime.now()
+print("Current date and time is:")
+print(now.strftime("%m-%d-%y %H:%M:%S"))
 
-detector = cv2.QRCodeDetector()
 
 while True:
     _, img = cap.read()
-
-    # detect and decode
     
     decodedObjects = pyzbar.decode(img)
-    for lines in decodedObjects:
-        open('decodedobjects', decodedObjects.txt)
+    
+
+    with open('qrcodeData.txt', 'w') as output:
+        output.write('Date and Time:')
+        output.write(now.strftime("%m-%d-%y %H:%M:%S"))
+
+    
+    
     
     cv2.imshow("QRCODEscanner", img)
     key = cv2.waitKey(1)
